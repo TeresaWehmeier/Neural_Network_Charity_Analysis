@@ -76,6 +76,7 @@ After some internet searching, I gave up the rule-of-thumb of 2-3 times the numb
 I decided to use a Random Forest model in my fourth attempt, and finally broke the 70% accuracy ceiling.
 
 ### Optimization Attempt Settings and Results
+
 | Attempt | Model | ASK_AMT Binned Result | ASK_AMT Unbinnned Result |
 ----------------------------------------------------------------------
 | First | 2 Hidden Node Layers: 8 RELU, 5 RELU, OUTPUT SIGMOID |

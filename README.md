@@ -37,11 +37,26 @@ Neither of the above made any difference to the results; however, I did retain t
 Once binning was performed, a OneHotEncoder instance was created and merged to the original application_df DataFrame.
 
 ### Compile, Train and Optimize Attempts
-Once the data was preprocessed, a train_test_split was performed, using the IS_SUCCESSFUL column as the dependent variable (y) and forty (40) features to be used in the X_train and X_test models. StandardScaler instance was used to scale X_train and y_train. The X_train shape of 25,724 rows and  40 features (columns) was the result.
+Once the data was preprocessed, a train_test_split was performed, using the IS_SUCCESSFUL column as the dependent variable (y) and forty (40) features to be used in the X_train and X_test models. StandardScaler instance was used to scale X_train and y_train. The X_train shape of 25,724 rows and  40 features (columns) was the result. Finally, the following code was used to save checkpoints at every 5 epochs:
+```
+import os
+from tensorflow.keras.callbacks import ModelCheckpoint
 
-The resulting IPYNB file for <a href="AlphabetSoupCharity_Optimization.ipynb">AlphabetSoupCharity_Optimization</a> is only one of many iterations of the file required of the research project to optimize the predicatability of the model. Several iterations were conducted to improve the baseline result of **Loss: 0.6250233054161072, Accuracy: 0.679067075252533** created in <a href="AlphabetSoupCharity.ipynb">deliverable one and two</a>. The resulting <a href="AlphabetSoupCharity_Optimization.ipynb">deliverable three</a> was my final four attempts at optimization of the model.
+# Define the checkpoint path and filenames
+os.makedirs("checkpoints/", exist_ok=True)
+checkpoint_path = "checkpoints/weights.{epoch:02d}.hdf5"
+
+# Create a callback that saves the model's weights every 5 epochs
+cp_callback = ModelCheckpoint(
+    filepath=checkpoint_path,
+    verbose=1,
+    save_weights_only=True,
+    save_freq=4000)
+```
 
 ## Results
+The resulting IPYNB file for <a href="AlphabetSoupCharity_Optimization.ipynb">AlphabetSoupCharity_Optimization</a> is only one of many iterations of the file required of the research project to optimize the predicatability of the model. Several iterations were conducted to improve the baseline result of **Loss: 0.6250233054161072, Accuracy: 0.679067075252533** in <a href="AlphabetSoupCharity.ipynb">deliverable one and two</a>. The resulting <a href="AlphabetSoupCharity_Optimization.ipynb">deliverable three</a> were my final four attempts at optimization of the model.
+
 
 
  

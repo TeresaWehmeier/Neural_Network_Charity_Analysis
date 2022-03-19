@@ -55,7 +55,7 @@ cp_callback = ModelCheckpoint(
 ## Results
 During optimization, I wondered if the ASK_AMT was creating some noise in the model, because over 2/3's of the rows were $5000 (minimum fund request) and very few rows of very large ask amounts (millions). Since I was having some difficulty exceeding 67% accuracy in my neural network models, I used three different methods to see if accuracy would improve:
 1. Binned the ASK_AMT into two categories - $5000 ask amount and >$5000 ask amount (saved in separate IPYNB for comparison purposes to final optimization)
-2. Binned the ASK_AMT into five bins, grouping the amounts into: 5000 - <50,000; 50,000 - <500,000; 500,000 - <1M, and 1M+ (not saved in IPYNB)
+2. Binned the ASK_AMT into five bins, grouping the amounts into: 5000 - <50,000; 50,000 - <500,000; 500,000 - <1M, 1M - <5M, and 5M+ (not saved in IPYNB)
 3. Removed the ASK_AMT from the DataFrame (not saved in IPYNB)
 
 Of the three attempts above, the only one that made any difference was #1, so I kept it to compare to unbinned ask amounts<a href="AlphabetSoupCharity_Optimization_ASK_AMT_grouped.ipynb">here</a> for comparison purposes. However, the binning of this column only made a consistent difference in two of my four optimization attempts. The other two made no difference to the accuracy of my model and were not kept.

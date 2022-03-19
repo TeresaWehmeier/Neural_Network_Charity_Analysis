@@ -70,9 +70,9 @@ The baseline model in deliverables one and two included:
 
 The baseline result produced in the first two deliverables for this project was: **Loss: 0.6250233054161072, Accuracy: 0.679067075252533**.
 
-A target of 75% accuracy was the goal for the fourth deliverable. During testing, I was often frustrated by the fact that no matter what iteration of hidden nodes, layers or activations were used, the resulting accuracy remained frustratingly low (often less than 65%) and losses were often above 2.0. The only real consistency I found was that a third hidden layer did not improve accuracy, and relu activation was the only one that produced reliable and consistent results, though still well below the 75% target. Using tahn instead of relu in first, second or third hidden layers always produced low accuracy results (less than 65% and often below 60%).
+A target of 75% accuracy was the goal for the fourth deliverable. I used TensorFlow Keras neural network model in my first three attempts. During testing, I was often frustrated by the fact that no matter what iteration of hidden nodes, layers or activations were used, the resulting accuracy remained frustratingly low (often less than 65%) and losses were often above 2.0. The only real consistency I found was that a third hidden layer did not improve accuracy, and relu activation was the only one that produced reliable and consistent results, though still well below the 75% target. Using tahn instead of relu in first, second or third hidden layers always produced low accuracy results (less than 65% and often below 60%).
 
-After some internet searching, I gave up the rule-of-thumb of 2-3 times the number of inputs for the first hidden node layer, and used another suggested rule of 2/3's the input number. Once I reduced the hidden node layers to 8 - 30 (instead of 80-120), I began to see improved results. Still, I was unable to exceed 70% accuracy. 
+After some internet searching, I gave up the rule-of-thumb of 2-3 times the number of first layer hidden node units, and used another suggested rule of 2/3's the input number. Once I reduced the hidden node layers to 8 - 30 (instead of 80-120), I began to see improved results. Still, I was unable to exceed 70% accuracy. 
 
 I decided to use a Random Forest model in my fourth attempt, and finally broke the 70% accuracy ceiling.
 

@@ -15,7 +15,7 @@ Alphabet Soup, a hypothetical charity foundation, needs to develop a method of p
 * Applications: Python 3.9, Jupyter Notebook
 
 ## Data Preprocessing
-Using the charity_data.csv file, the EIN and NAME columns were dropped and the following features (X) were read in for pre-processing
+Using the charity_data.csv file, the EIN and NAME columns were dropped, since they were not relevant features, and the following features (X) were read in for pre-processing:
 * APPLICATION_TYPE
 * AFFILIATION
 * CLASSIFICATION
@@ -29,7 +29,7 @@ Using the charity_data.csv file, the EIN and NAME columns were dropped and the f
 The target variable (y) is:
 * IS_SUCCESSFUL
 
-Querying the unique records for each feature indicated the need to bin the APPLICATION_TYPE and CLASSIFICATION columns. 
+Querying the unique records for each feature indicated the need to bin the APPLICATION_TYPE and CLASSIFICATION columns, since there were more than 10 features in each column without binning. 
 
 Once binning was performed, a OneHotEncoder instance was created and merged to the original application_df DataFrame.
 
@@ -50,6 +50,7 @@ cp_callback = ModelCheckpoint(
     save_weights_only=True,
     save_freq=4000)
 ```
+The file was save as an h5 file once all models were run.
 
 ### The Optimization Decision Process
 During optimization, I wondered if the ASK_AMT was creating some noise in the model, because over 2/3's of the rows were $5000 (minimum fund request) and very few rows of very large ask amounts (millions). Since I was having some difficulty exceeding 67% accuracy in my neural network models, I used three different methods to see if accuracy would improve:
@@ -93,7 +94,7 @@ First Attempt Results:
 
 Second Attempt Results:
 * ASK_AMT binned: Second Attempt Loss: 1.935193419456482, Second Attempt Accuracy: 0.6399999856948853
-* ASK_AMT unbinned: First Attempt Loss: 0.6828586459159851, First Attempt Accuracy: 0.5924198031425476
+* ASK_AMT unbinned: Second Attempt Loss: 1.1917853355407715, Second Attempt Accuracy: 0.6542273759841919
 
 #### Third Attempt
 * Hidden Node Layer 1: units=24, activation= relu, inputs=40
@@ -108,6 +109,7 @@ Third Attempt Results:
 #### Fourth Attempt
 Random Forest Model used
 * RandomForestClassifier(n_estimators=128, random_state=78)
+* Random forest predictive accuracy: 0.712
 * Hidden Node Layer 1: units=30, activation= relu, inputs=40
 * Hidden Node Layer 2: units=15, activation= relu
 * Hidden Node Layer 3: units=5, activation= relu
@@ -117,7 +119,17 @@ Fourth Attempt Results:
 * ASK_AMT binned: Fourth Attempt RF Loss: 0.5575706362724304, Fourth Attempt RF Accuracy: 0.729912519454956
 * ASK_AMT unbinned: Fourth Attempt RF Loss: 0.558372437953949, Fourth Attempt RF Accuracy: 0.7300291657447815
 
-The resulting deliverable IPYNB file for <a href="AlphabetSoupCharity_Optimization.ipynb">AlphabetSoupCharity_Optimization</a> is only one of many iterations of the file used during the project to optimize the accuracy of the model. Several iterations were conducted to improve the baseline result of **Loss: 0.6250233054161072, Accuracy: 0.679067075252533** in <a href="AlphabetSoupCharity.ipynb">deliverable one and two</a>. The resulting <a href="AlphabetSoupCharity_Optimization.ipynb">deliverable three</a> were my final four attempts at optimization of the model.
+The resulting deliverable IPYNB file for <a href="AlphabetSoupCharity_Optimization.ipynb">AlphabetSoupCharity_Optimization</a> is only one of many iterations of the file used during the project to optimize the accuracy of the model. Several iterations were conducted to improve the baseline result of **Loss: 0.6250233054161072, Accuracy: 0.679067075252533** in <a href="AlphabetSoupCharity.ipynb">deliverable one and two</a>. The resulting <a href="AlphabetSoupCharity_Optimization.ipynb">deliverable three</a> was my final four attempts at optimization of the model.
+
+## Summary
+In some instances, binning the ASK_AMT helped the accuracy of the results (first and third attempts), but losses were always unacceptably high to me. Since the accuracy of these two sections were not close to 70%, I discarded the binning of this feature as a solution to optimizing the model.
+
+I was able to get within 2 percentage points to the targeted 75% accuracy,(73% in my fourth attempt), but I was only able to get above 70% by using the Random Forest model. The fact that the accuracy results in the RF model were the same whether or not the ASK_AMT was binned suggests the binning was not relevant to the model, so I chose to produce the final IPYNB deliverable without the bins for this feature. My highest accuracy result never exceeds 73%, no matter how much I tweaked the model, but I felt it was pretty close for this type of predictive model.
+
+Future efforts to improve the model may not necessarily use a different model, but I believe tweaking the Random Forest model to save highest performing tests, and reuse them in further testing will increase the accuracy of the model. In addition, the RF model needs to be tested with fewer hidden layers, which I didn't have time to do during this project. Any tweaking to the RF model needs to be alert to the possibility of overfitting, however. Finally, with a bit more research on my part, I believe I could improve the other three attempts by using different node and activation settings, but again, exceeded the time I had for this project.
+
+Respectfully,
+Teresa Wehmeier
 
 
 

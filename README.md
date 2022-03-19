@@ -77,10 +77,45 @@ I decided to use a Random Forest model in my fourth attempt, and finally broke t
 
 ### Optimization Attempt Settings and Results
 
-| Attempt | Model | ASK_AMT Binned Result | ASK_AMT Unbinnned Result |
-----------------------------------------------------------------------
-| First | 2 Hidden Node Layers: 8 RELU, 5 RELU, OUTPUT SIGMOID |
+#### First Attempt
+* Hidden Node Layer 1: units=8, activation= relu, inputs=40
+* Hidden Node Layer 2: units=5, activation= relu
+* Output=sigmoid
 
+First Attempt Results:
+* ASK_AMT binned: First Attempt Loss: 1.5169949531555176, First Attempt Accuracy: 0.6319533586502075
+* ASK_AMT unbinned: First Attempt Loss: 0.6828586459159851, First Attempt Accuracy: 0.5924198031425476
+
+#### Second Attempt
+* Hidden Node Layer 1: units=24, activation= relu, inputs=40
+* Hidden Node Layer 2: units=12, activation= relu
+* Output=sigmoid
+
+Second Attempt Results:
+* ASK_AMT binned: Second Attempt Loss: 1.935193419456482, Second Attempt Accuracy: 0.6399999856948853
+* ASK_AMT unbinned: First Attempt Loss: 0.6828586459159851, First Attempt Accuracy: 0.5924198031425476
+
+#### Third Attempt
+* Hidden Node Layer 1: units=24, activation= relu, inputs=40
+* Hidden Node Layer 2: units=12, activation= relu
+* Hidden Node Layer 3: units=6, activation= relu
+* Output=sigmoid
+
+Third Attempt Results:
+* ASK_AMT binned: Third Attempt Loss: 1.9113367795944214, Third Attempt Accuracy: 0.6510787010192871
+* ASK_AMT unbinned: Third Attempt Loss: 0.8711269497871399, Third Attempt Accuracy: 0.5481049418449402
+
+#### Fourth Attempt
+Random Forest Model used
+* RandomForestClassifier(n_estimators=128, random_state=78)
+* Hidden Node Layer 1: units=30, activation= relu, inputs=40
+* Hidden Node Layer 2: units=15, activation= relu
+* Hidden Node Layer 3: units=5, activation= relu
+* Output=sigmoid
+
+Fourth Attempt Results:
+* ASK_AMT binned: Fourth Attempt RF Loss: 0.5575706362724304, Fourth Attempt RF Accuracy: 0.729912519454956
+* ASK_AMT unbinned: Fourth Attempt RF Loss: 0.558372437953949, Fourth Attempt RF Accuracy: 0.7300291657447815
 
 The resulting deliverable IPYNB file for <a href="AlphabetSoupCharity_Optimization.ipynb">AlphabetSoupCharity_Optimization</a> is only one of many iterations of the file used during the project to optimize the accuracy of the model. Several iterations were conducted to improve the baseline result of **Loss: 0.6250233054161072, Accuracy: 0.679067075252533** in <a href="AlphabetSoupCharity.ipynb">deliverable one and two</a>. The resulting <a href="AlphabetSoupCharity_Optimization.ipynb">deliverable three</a> were my final four attempts at optimization of the model.
 

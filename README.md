@@ -53,7 +53,7 @@ cp_callback = ModelCheckpoint(
 The file was save as an h5 file once all models were run.
 
 ### The Optimization Decision Process
-During optimization, I wondered if the ASK_AMT was creating some noise in the model, because over 2/3's of the rows were $5000 (minimum fund request) and very few rows of very large ask amounts (millions). Since I was having some difficulty exceeding 67% accuracy in my neural network models, I used three different methods to see if accuracy would improve:
+During optimization, I wondered if the ASK_AMT was creating some noise in the model, because over 2/3's of the rows were $5000 (minimum fund request) and very few rows of very large ask amounts (a few rows were millions of dollars). Since I was having some difficulty exceeding 67% accuracy in my neural network models, I used three different methods to see if accuracy would improve:
 1. Binned the ASK_AMT into two categories - $5000 ask amount and >$5000 ask amount (saved in separate IPYNB for comparison purposes to final optimization)
 2. Binned the ASK_AMT into five bins, grouping the amounts into: 5000 - <50,000; 50,000 - <500,000; 500,000 - <1M, 1M - <5M, and 5M+ (not saved in IPYNB)
 3. Removed the ASK_AMT from the DataFrame (not saved in IPYNB)
